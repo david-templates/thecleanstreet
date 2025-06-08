@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let vh = window.innerHeight * 0.01;
         // Then we set the value in the --real-vh custom property to the root of the document
         document.documentElement.style.setProperty('--real-vh', `${vh * 100}px`);
-        
-        // For browsers that need the full height minus navbar height
-        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-        document.documentElement.style.setProperty('--real-vh-minus-nav', `${vh * 100 - navbarHeight}px`);
     }
     
     // Set the height only once at page load
