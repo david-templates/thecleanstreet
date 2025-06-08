@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Set real viewport height (to avoid mobile browser UI issues)
+    // Set real viewport height (to avoid mobile browser UI issues) - only once at load
     function setRealVh() {
         // First we get the viewport height and multiply it by 1% to get a value for a vh unit
         let vh = window.innerHeight * 0.01;
@@ -11,17 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.style.setProperty('--real-vh-minus-nav', `${vh * 100 - navbarHeight}px`);
     }
     
-    // Set the height initially
+    // Set the height only once at page load
     setRealVh();
     
-    // Update on orientation change or resize, but use a debounce to avoid constant updates
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(setRealVh, 150);
-    });
-    
-    window.addEventListener('orientationchange', setRealVh);
+    // Remove the resize and orientation change event listeners to prevent vh changes
+    // window.addEventListener('resize', function() {...}); - REMOVED
+    // window.addEventListener('orientationchange', setRealVh); - REMOVED
 
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('#mobile-menu');
